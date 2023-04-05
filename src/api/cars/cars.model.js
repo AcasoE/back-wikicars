@@ -35,6 +35,7 @@ const CarsSchema = new mongoose.Schema(
         "Jaguar",
         "Smart",
       ],
+      required: true
     },
     model: { type: String, required: true, unique: true },
     type: {
