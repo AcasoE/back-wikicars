@@ -16,7 +16,7 @@ const createCarTorevise = async(req, res, next)=>{
 
     try {
         
-        const newCarToRevise = await new Car(req.body)
+        const newCarToRevise = await new CarToRevise(req.body)
         if (req.file) {
             newCar.image = req.file.path;
         }
@@ -26,12 +26,12 @@ const createCarTorevise = async(req, res, next)=>{
         return next(error);
     }
 }
-const getCarToReviseByModel = async (req, res, next)=>{
+const getCarToReviseById = async (req, res, next)=>{
     try {
-       const { model } = req.params; 
-       const car  = await CarToRevise.findOne({model: model});
+       const { id } = req.params; 
+       const car  = await CarToRevise.findOne(id);
        if(!car){
-        return res.json("No hemos podido encontrar el coche, ese modelo no lo tenemos registrado")
+        return res.json("No hemos podido encontrar el coche, ese id no lo tenemos registrado")
        }
        return res.json(car)
     } catch (error) {
@@ -49,4 +49,4 @@ const deleteCarToReviseById = async (req, res, next)=>{
     }
 }
 
-module.exports = {createCarTorevise, deleteCarToReviseById, getAllCarsToRevise, getCarToReviseByModel}
+module.exports = {createCarTorevise, deleteCarToReviseById, getAllCarsToRevise, getCarToReviseById}
