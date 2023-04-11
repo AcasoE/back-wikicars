@@ -43,7 +43,7 @@ const deleteCarToReviseById = async (req, res, next)=>{
     try {
         const { id } = req.params;
         const carDeleted = await CarToRevise.findByIdAndDelete(id)
-        res.json.status(200).json(carDeleted)
+        return res.json.status(200).json(carDeleted)
     } catch (error) {
         next(error)
     }
