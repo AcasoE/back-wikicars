@@ -1,13 +1,13 @@
-const CarToRevise = require ('./cars-to-revise.model')
+const CarToRevise = require ('./cars-to-revise.model');
 
 const getAllCarsToRevise = async (req, res, next)=>{
 
     try {
         
         const carsTorevise = await CarToRevise.find()
-        return res.json(carsTorevise)
+        return res.json(carsTorevise);
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 
@@ -18,24 +18,35 @@ const createCarTorevise = async(req, res, next)=>{
         
         const newCarToRevise = await new Car(req.body)
         if (req.file) {
-            newCar.image = req.file.path
+            newCar.image = req.file.path;
         }
         await newCarToRevise.save()
-        return res.json(newCarToRevise)
+        return res.json(newCarToRevise);
+    } catch (error) {
+        return next(error);
+    }
+}
+const getCarToReviseByModel = async (req, res, next)=>{
+    try {
+       const { model } = req.params; 
+       const car  = await CarToRevise.findOne({model: model});
+       if(!car){
+        return res.json("No hemos podido encontrar el coche, ese modelo no lo tenemos registrado")
+       }
+       return res.json(car)
     } catch (error) {
         return next(error)
     }
 }
-
-const deleteCarToRevise = async (req, res, next)=>{
+const deleteCarToReviseById = async (req, res, next)=>{
 
     try {
         const { id } = req.paramas;
-        const carDeleted = await Car.findByIdAndDelete(id)
+        const carDeleted = await CarToRevise.findOneAndByIdDelete(id)
         res.json.status(200).json(carDeleted)
     } catch (error) {
         next(error)
     }
 }
 
-module.exports = {createCarTorevise, deleteCarToRevise, getAllCarsToRevise}
+module.exports = {createCarTorevise, deleteCarToReviseById, getAllCarsToRevise, getCarToReviseByModel}
