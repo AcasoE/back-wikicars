@@ -16,7 +16,7 @@ const createCarTorevise = async(req, res, next)=>{
 
     try {
         
-        const newCarToRevise = await new CarToRevise(req.body)
+        const newCarToRevise =  new CarToRevise(req.body)
         if (req.file) {
             newCar.image = req.file.path;
         }
