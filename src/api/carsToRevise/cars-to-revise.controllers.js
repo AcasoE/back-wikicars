@@ -29,7 +29,7 @@ const createCarTorevise = async(req, res, next)=>{
 const getCarToReviseById = async (req, res, next)=>{
     try {
        const { id } = req.params; 
-       const car  = await CarToRevise.findOne(id);
+       const car  = await CarToRevise.findById(id);
        if(!car){
         return res.json("No hemos podido encontrar el coche, ese id no lo tenemos registrado")
        }
