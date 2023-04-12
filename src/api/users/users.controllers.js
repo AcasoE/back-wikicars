@@ -30,7 +30,7 @@ const registerUser  = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
 
     try {
-        const userTolog = await User.findOne({email: req.body.name})
+        const userTolog = await User.findOne({name: req.body.name})
     if (!userTolog) {
         res.status(500).json("No se ha encontrado el usuario")
         
