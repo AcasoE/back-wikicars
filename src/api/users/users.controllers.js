@@ -39,7 +39,7 @@ const loginUser = async (req, res, next) => {
         const token = generateSign(userToLog._id, userToLog.name);
         return res.status(200).json({token, userToLog})
     } else{
-        return res.status(500).json('Contrseña incorrecta')
+        return res.status(400).json('Contrseña incorrecta')
     }
     } catch (error) {
         return next(error)
