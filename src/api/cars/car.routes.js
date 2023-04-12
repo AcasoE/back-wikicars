@@ -7,6 +7,6 @@ carRoutes.post("/create",[isAdmin], uploadImage.single('image'),  createCar)
 carRoutes.put("/update/:id", [isAdmin],uploadImage.single('image'), updateCarById)
 carRoutes.delete("/delete/:id",[isAdmin], deleteCarById)
 carRoutes.get("/:id",  getCarByid)
-carRoutes.get("/",[isAuth],  getCars)
+carRoutes.get("/", getCars)
 
 module.exports = { carRoutes }
