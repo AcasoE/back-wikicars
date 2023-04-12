@@ -37,7 +37,7 @@ const loginUser = async (req, res, next) => {
     }
     if (bcrypt.compareSync(req.body.password, userToLog.password)) {
         const token = generateSign(userToLog._id, userToLog.name);
-        return ews.status(200).json({token, userToLog})
+        return res.status(200).json({token, userToLog})
     } else{
         return res.status(500).json('Contrseña incorrecta')
     }
