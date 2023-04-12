@@ -30,14 +30,14 @@ const registerUser  = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
 
     try {
-        const userTolog = await User.findOne({name: req.body.name})
-    if (!userTolog) {
+        const userToLog = await User.findOne({name: req.body.name})
+    if (!userToLog) {
         res.status(500).json("No se ha encontrado el usuario")
         
     }
-    if (bcrypt.compareSync(req.body.password, userTolog.password)) {
-        const token = generateSign(userTolog._id, userTolog.name);
-        return ews.status(200).json({token, userTolog})
+    if (bcrypt.compareSync(req.body.password, userToLog.password)) {
+        const token = generateSign(userToLog._id, userToLog.name);
+        return ews.status(200).json({token, userToLog})
     } else{
         return res.status(500).json('Contrseña incorrecta')
     }
