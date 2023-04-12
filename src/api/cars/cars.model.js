@@ -41,7 +41,7 @@ const CarsSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ["Sedán", "Compacto", "Cuopé", "Roadster", "Ranchera"],
+      enum: ["Sedán", "Compacto", "Deportivo", "Roadster", "Ranchera"],
     },
     power: { type: Number, required: true },
     par: { type: Number, required: true },
