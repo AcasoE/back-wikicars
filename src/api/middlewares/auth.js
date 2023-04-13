@@ -9,10 +9,13 @@ const isAuth = async (req, res,next) => {
         if (!token) {
             return res.json('No estás autorizado')
         }
+        console.log("hola1");
 
         const parsedToken = token.replace('Bearer ', '')
+        console.log("hola2");
+
         const validToken = verifyToken(parsedToken)
-        console.log("hola");
+        console.log("hola3");
         const userloged = await User.findById(validToken.id)
         userloged. password = null
         req.user = userloged
