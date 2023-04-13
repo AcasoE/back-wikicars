@@ -12,6 +12,7 @@ const isAuth = async (req, res,next) => {
 
         const parsedToken = token.replace('Bearer ', '')
         const validToken = verifyToken(parsedToken)
+        console.log("hola");
         const userloged = await User.findById(validToken.id)
         userloged. password = null
         req.user = userloged
