@@ -6,6 +6,7 @@ const isAuth = async (req, res,next) => {
  
     try {
         const token = req.headers.authorization
+        console.log("hola1");
         if (!token) {
             return res.json('No estás autorizado')
         }
