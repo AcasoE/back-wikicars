@@ -6,7 +6,7 @@ const carRoutes = require('express').Router();
 carRoutes.post("/create",[isAdmin], uploadImage.single('image'),  createCar)
 carRoutes.put("/update/:id", [isAdmin],uploadImage.single('image'), updateCarById)
 carRoutes.delete("/delete/:id",[isAdmin], deleteCarById)
-carRoutes.get("/:id",  getCarByid)
-carRoutes.get("/", getCars)
+carRoutes.get("/:id", [isAuth], getCarByid)
+carRoutes.get("/", [isAuth], getCars)
 
 module.exports = { carRoutes }

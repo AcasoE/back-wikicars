@@ -49,7 +49,7 @@ const deleteCarById = async(req, res, next)=>{
 const updateCarById = async (req, res, next)=>{
     try {
         const { id } = req.params
-        if (rew.file) {
+        if (req.file) {
             const oldCar = await Car.findById(id)
             if (oldCar.image) {
                 deleteFile(oldCar.image)

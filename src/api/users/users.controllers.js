@@ -1,4 +1,4 @@
-const { generateSign } = require('../../utils/jsonwebtoken')
+const { generateSign, verifyToken } = require('../../utils/jsonwebtoken')
 const User = require('./users.model')
 const bcrypt = require('bcrypt')
 
@@ -47,10 +47,33 @@ const loginUser = async (req, res, next) => {
     
 }
 
+const isAdminGet = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization
+        if(!token){
+            return res.json("No estás autorizado")
+        }
+
+        const parsedToken = JSON.parse(token)
+        const validToken = verifyToken(parsedToken.token)
+        if(validToken){
+            const userloged = await User.findById(parsedToken.id)
+        if (userloged.rol === "admin") {
+            userloged.password = null
+            return res.status(200).json(userloged)
+            
+        } else{
+            return res.json("No eres admin")
+        }
+    }
+    } catch (error) {
+        return next(error)
+    }
+}
 
 
 
 
 
 
-module.exports = { getAllUsers, registerUser, loginUser}
+module.exports = { getAllUsers, registerUser, loginUser, isAdminGet}
