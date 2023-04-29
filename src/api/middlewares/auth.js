@@ -9,10 +9,9 @@ const isAuth = async (req, res,next) => {
         if (!token) {
             return res.json('No estás autorizado')
         }
-        const parsedToken = (token)
-        const validToken = verifyToken(parsedToken)
+        const validToken = verifyToken(token)
         if(validToken){
-            const userloged = await User.findById(parsedToken.id)
+            const userloged = await User.findById(validToken.id)
             userloged.password = null
             req.user = userloged
             next()
