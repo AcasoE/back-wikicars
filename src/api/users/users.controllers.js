@@ -71,7 +71,7 @@ const isAdminGet = async (req, res, next) => {
     }
 }
 
-const getSession = async (re, res, next ) =>{
+const checkSession = async (re, res, next ) =>{
     try {
         const token = req.headers.authorization
         if (!token) {
@@ -98,4 +98,4 @@ const getSession = async (re, res, next ) =>{
 
 
 
-module.exports = { getAllUsers, registerUser, loginUser, isAdminGet, getSession}
+module.exports = { getAllUsers, registerUser, loginUser, isAdminGet, checkSession}
