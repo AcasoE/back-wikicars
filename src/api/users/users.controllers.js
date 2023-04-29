@@ -72,7 +72,7 @@ const isAdminGet = async (req, res, next) => {
 }
 
 const checkSession = async (req, res, next) =>{
-        return res.JSON(req.user)
+        return res.json(req.user)
 
 }
 
