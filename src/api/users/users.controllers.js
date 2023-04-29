@@ -73,7 +73,7 @@ const isAdminGet = async (req, res, next) => {
 
 const checkSession = async (re, res, next ) =>{
     try {
-        return req.res
+        return req.user
     
     } catch (error) {
         return next(error)
