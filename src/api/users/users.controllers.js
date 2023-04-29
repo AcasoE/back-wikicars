@@ -71,7 +71,7 @@ const isAdminGet = async (req, res, next) => {
     }
 }
 
-const checkSession = async (re, res, next ) =>{
+const checkSession = async (req, res, next ) =>{
     try {
         return req.user
     
