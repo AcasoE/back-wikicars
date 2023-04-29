@@ -4,6 +4,7 @@ const Car = require("./cars.model.js");
 const createCar = async (req, res, next) => {
   try {
     const newCar = await new Car(req.body);
+    console.log(req.body);
     if (req.file) {
       newCar.image = req.file.path;
     }

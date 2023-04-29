@@ -56,6 +56,7 @@ const CarsSchema = new mongoose.Schema(
     heigh: { type: Number, required: true },
     speed: { type: Number, required: true }, */
     image: { type: String, required: true },
+    checked: {type: Boolean, required: true}
   },
   {
     timestamps: true,
