@@ -32,10 +32,9 @@ const isAdmin = async (req, res, next) => {
             return res.json("No estás autorizado")
         }
 
-        const parsedToken = JSON.parse(token)
-        const validToken = verifyToken(parsedToken.token)
+        const validToken = verifyToken(token)
         if(validToken){
-            const userloged = await User.findById(parsedToken.id)
+            const userloged = await User.findById(validToken.id)
         if (userloged.rol === "admin") {
             userloged.password = null
             req.user = userloged
