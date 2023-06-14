@@ -35,10 +35,10 @@ const CarsSchema = new mongoose.Schema(
         "Jaguar",
         "Smart",
       ],
-      required: true
+      required: true,
     },
     model: { type: String, required: true, unique: true },
-/*     type: {
+    type: {
       type: String,
       required: true,
       enum: ["Sedán", "Compacto", "Deportivo", "Roadster", "Ranchera"],
@@ -54,9 +54,9 @@ const CarsSchema = new mongoose.Schema(
     },
     year: { type: Number, required: true },
     heigh: { type: Number, required: true },
-    speed: { type: Number, required: true }, */
-    image: { type: String},
-    checked: {type: Boolean, default: false, required: true}
+    speed: { type: Number, required: true }, 
+    image: { type: String },
+    checked: { type: Boolean, default: false, required: true },
   },
   {
     timestamps: true,
