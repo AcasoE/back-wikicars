@@ -36,7 +36,7 @@ const loginUser = async (req, res, next) => {
         
     }
     if (bcrypt.compareSync(req.body.password, userToLog.password)) {
-        const token = generateSign(userToLog._id, userToLog.name);
+        const token = generateSign(userToLog._id);
         return res.status(200).json({token, userToLog})
     } else{
         return res.status(400).json('Contrseña incorrecta')
@@ -71,9 +71,31 @@ const isAdminGet = async (req, res, next) => {
     }
 }
 
+const getSession = async (re, res, next ) =>{
+    try {
+        const token = req.headers.authorization
+        if (!token) {
+            return res.json('No estás autorizado')
+        }
+        const validToken = verifyToken(token)
+        if(validToken){
+            const userloged = await User.findById(validToken.id)
+            userloged.password = null
+            req.user = userloged
+            return res.status(200).json(userloged)
+            
+        } else{
+            return res.json("No eres admin")
+        }
+    
+    } catch (error) {
+        return next(error)
+    }
+}
 
 
 
 
 
-module.exports = { getAllUsers, registerUser, loginUser, isAdminGet}
+
+module.exports = { getAllUsers, registerUser, loginUser, isAdminGet, getSession}
