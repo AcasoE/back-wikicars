@@ -36,7 +36,7 @@ const loginUser = async (req, res, next) => {
         
     }
     if (bcrypt.compareSync(req.body.password, userToLog.password)) {
-        const token = generateSign(userToLog._id);
+        const token = generateSign(userToLog._id, userToLog.name);
         return res.status(200).json({token, userToLog})
     } else{
         return res.status(400).json('Contrseña incorrecta')
@@ -71,14 +71,9 @@ const isAdminGet = async (req, res, next) => {
     }
 }
 
-const checkSession = async (req, res, next) =>{
-        return res.json(req.user)
-
-}
 
 
 
 
 
-
-module.exports = { getAllUsers, registerUser, loginUser, isAdminGet, checkSession}
+module.exports = { getAllUsers, registerUser, loginUser, isAdminGet}
