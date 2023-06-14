@@ -40,7 +40,7 @@ const CarsSchema = new mongoose.Schema({
   type: { 
     type: String, 
     required: true,
-    enum:['Sedán', 'Compacto', 'Deportivo', 'Roadster', 'Ranchera'] },
+    enum:['Sedán', 'Compacto', 'Cuopé', 'Roadster', 'Ranchera'] },
   power: { type: Number, required: true },
   par: { type: Number, required: true },
   engineType: { type: String, required: true },
@@ -57,3 +57,6 @@ const CarsSchema = new mongoose.Schema({
   timestamps: true,
   collection: 'carstorevise'
 });
+
+const CarToRevise = mongoose.model('carstorevise', CarsSchema);
+module.exports =  CarToRevise;

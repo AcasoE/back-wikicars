@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 
 
 
-const generateSign = ( id)=>{
-    return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'});
+const generateSign = (email, id)=>{
+    return jwt.sign({id, email}, process.env.JWT_SECRET, {expiresIn: '1d'});
 };
 
 const verifyToken =(token)=>{
